@@ -38,6 +38,7 @@ angular.module('angucomplete-alt', [] ).directive('angucompleteAlt', ['$q', '$pa
       disableInput: '=',
       initialValue: '@',
       localData: '=',
+      otherData: '=',
       remoteUrlRequestFormatter: '=',
       remoteUrlResponseFormatter: '=',
       remoteUrlErrorCallback: '=',
@@ -129,7 +130,7 @@ angular.module('angucomplete-alt', [] ).directive('angucompleteAlt', ['$q', '$pa
 
       function callOrAssign(value) {
         if (typeof scope.selectedObject === 'function') {
-          scope.selectedObject(value);
+          scope.selectedObject(value, scope.otherData);
         }
         else {
           scope.selectedObject = value;
@@ -348,7 +349,7 @@ angular.module('angucomplete-alt', [] ).directive('angucompleteAlt', ['$q', '$pa
             scope.selectResult(scope.results[0]);
           }
           else {
-            // scope.currentIndex >= 0 
+            // scope.currentIndex >= 0
             scope.selectResult(scope.results[scope.currentIndex]);
           }
           scope.$apply();
